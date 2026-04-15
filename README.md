@@ -1,35 +1,32 @@
 
-# LAB2 - Infraestructura como Código
-# CEDANO BACA, AMILCAR ANDERSON
- LAB2 - Infraestructura como Código
+**Autor:** Amilcar Anderson Cedano Baca
+---
 
-## Despliegue
+## 📁 Estructura del Proyecto
 
-### 1. Construir imágenes Docker
-```bash
+```text
+LAB2_INFRAESTRUCTURA_COMO_CODIGO/
+├── iac/                    # Terraform (Infraestructura)
+├── src/
+│   ├── web/                # Frontend (Nginx)
+│   ├── api/                # Backend (Node.js)
+│   └── db/                 # MySQL (Database)
+└── README.md
+🚀 Despliegue RápidoSigue estos pasos para levantar el entorno completo:Bash# 1. Construir imágenes de Docker
 docker build -t lab/web src/web/
 docker build -t lab/api src/api/
 docker build -t lab/db src/db/
-2. Desplegar con Terraform
-bash
+
+# 2. Inicializar y desplegar con Terraform
 cd iac
-terraform workspace new dev
 terraform init
+terraform workspace new dev || terraform workspace select dev
 terraform apply -auto-approve
-3. Verificar contenedores
-bash
-docker ps
-Acceso a la aplicación
-Servicio	URL
-Frontend	http://localhost:4001
-Backend API	http://localhost:4002
-Usuarios	http://localhost:4002/users
-Productos	http://localhost:4002/products
-Probar la API
-bash
-curl http://localhost:4002/
+
+# Consultar datos de la DB vía API
 curl http://localhost:4002/users
-Base de Datos
-bash
-docker exec -it mysql-dev-01 mysql -u root -p
-# Password: root123
+curl http://localhost:4002/products
+🗄️ Gestión de Base de DatosPara acceder directamente al contenedor de la base de datos:Bashdocker exec -it mysql-dev-01 mysql -u root -p
+# Password por defecto: root123
+🧹 Limpieza del EntornoPara destruir la infraestructura creada por Terraform:Bashcd iac
+terraform destroy -auto-approve
