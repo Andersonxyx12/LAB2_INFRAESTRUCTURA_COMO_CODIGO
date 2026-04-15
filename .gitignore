@@ -1,0 +1,8 @@
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+developer/
+*.local
+node_modules/
+data/
