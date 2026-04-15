@@ -18,3 +18,17 @@ variable "api_port" {
     prod = 5002
   }
 }
+
+variable "mysql_port" {
+  type = map(number)
+  default = {
+    dev  = 3306
+    prod = 3306
+  }
+}
+
+variable "mysql_root_password" {
+  type      = string
+  sensitive = true
+  default   = "root123"
+}
